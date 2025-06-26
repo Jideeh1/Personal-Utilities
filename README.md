@@ -1,18 +1,21 @@
-# League of Legends
+# Personal Utilities
 
-## Team with jideeh?
+## No Ads Utility Website
 
 - **Version**: 2025.6.26
 - **Status**: In Development
 - **Developers**: [Jideeh1](https://github.com/Jideeh1)
 
-The only purpose of this website existing is because Jideeh is bored as shit and wants to be productive while still feeling silly.
+You might wanna bookmark this because I made this with the intention of compiling all of my (and my friends') utilities for convenience without ads. I made all the front-end and had some ai agents assist me with its back-end. Don't expect anything great out of the back-end, but if it works--it works.
 
-live view of this project is under this link: 
+live view of this project is under this link:
 
 ### Resources Used
 
+- [W3School Documentations](https://www.w3schools.com/)
+- [mdnW Web Docs](https://developer.mozilla.org/en-US/)
+- [Vanilla-tilt.js](https://micku7zu.github.io/vanilla-tilt.js/)
 
 ## License
 
-The source code for this fan porject is licensed under the MIT License. click the <a href="License.txt">LICENSE</a>file for more details.
+This project is under the GNU License. This grants you the freedom to run, study, share, and modify however to your liking so long as you open-source your own version. Click <a href="License.txt">LICENSE</a>file for more details.
