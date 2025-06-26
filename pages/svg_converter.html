@@ -1,64 +1,120 @@
-
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Image to SVG Converter</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="stylings/global.css">
-</head>
-<body class="p-4">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="stylings/global.css" />
+  </head>
+  <body class="p-4">
     <div class="container flex flex-col items-center space-y-6">
-        <h1 class="text-3xl font-bold text-gray-800 mb-4 text-center">Image to SVG Converter</h1>
+      <h1 class="text-3xl font-bold text-gray-800 mb-4 text-center">
+        Image to SVG Converter
+      </h1>
 
-        <div class="w-full flex flex-col items-center space-y-4">
-            <label for="imageUpload" class="block text-gray-700 text-lg font-medium">Upload your image:</label>
-            <input type="file" id="imageUpload" accept="image/*" class="w-full max-w-md">
-            <p class="text-sm text-gray-500">Supported formats: JPG, PNG, GIF, BMP, WebP, etc.</p>
+      <div class="w-full flex flex-col items-center space-y-4">
+        <label for="imageUpload" class="block text-gray-700 text-lg font-medium"
+          >Upload your image:</label
+        >
+        <input
+          type="file"
+          id="imageUpload"
+          accept="image/*"
+          class="w-full max-w-md"
+        />
+        <p class="text-sm text-gray-500">
+          Supported formats: JPG, PNG, GIF, BMP, WebP, etc.
+        </p>
+      </div>
+
+      <div class="w-full flex flex-col items-center space-y-4 my-4">
+        <span class="text-gray-600 font-semibold text-lg">OR</span>
+      </div>
+
+      <div class="w-full flex flex-col items-center space-y-4">
+        <label
+          for="imageUrlInput"
+          class="block text-gray-700 text-lg font-medium"
+          >Enter Image URL:</label
+        >
+        <div class="flex w-full max-w-md space-x-2">
+          <input
+            type="text"
+            id="imageUrlInput"
+            placeholder="e.g., https://example.com/image.jpg"
+            class="flex-grow p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          />
+          <button id="loadImageFromUrlBtn" class="btn-primary flex-shrink-0">
+            Load Image
+          </button>
         </div>
+        <p class="text-sm text-gray-500 text-center">
+          Note: Some external images may not load due to
+          <a
+            href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS"
+            target="_blank"
+            class="text-indigo-600 hover:underline"
+            >CORS</a
+          >
+          policies.
+        </p>
+      </div>
 
-        <div class="w-full flex flex-col items-center space-y-4 my-4">
-            <span class="text-gray-600 font-semibold text-lg">OR</span>
-        </div>
+      <div
+        id="canvasContainer"
+        class="hidden w-full max-w-xl p-2 bg-gray-50 rounded-lg shadow-inner border border-gray-200"
+      >
+        <h2 class="text-xl font-semibold text-gray-800 mb-3 text-center">
+          Image Preview (Resized for Processing)
+        </h2>
+        <canvas id="imageCanvas" class="w-full rounded-md shadow-md"></canvas>
+        <p class="text-sm text-gray-500 text-center mt-2">
+          Your image will be processed at a maximum width/height of 200 pixels
+          for performance.
+        </p>
+      </div>
 
-        <div class="w-full flex flex-col items-center space-y-4">
-            <label for="imageUrlInput" class="block text-gray-700 text-lg font-medium">Enter Image URL:</label>
-            <div class="flex w-full max-w-md space-x-2">
-                <input type="text" id="imageUrlInput" placeholder="e.g., https://example.com/image.jpg" class="flex-grow p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500">
-                <button id="loadImageFromUrlBtn" class="btn-primary flex-shrink-0">Load Image</button>
-            </div>
-            <p class="text-sm text-gray-500 text-center">
-                Note: Some external images may not load due to <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS" target="_blank" class="text-indigo-600 hover:underline">CORS</a> policies.
-            </p>
-        </div>
+      <button id="convertBtn" class="btn-primary" disabled>
+        Convert to SVG
+      </button>
 
-        <div id="canvasContainer" class="hidden w-full max-w-xl p-2 bg-gray-50 rounded-lg shadow-inner border border-gray-200">
-            <h2 class="text-xl font-semibold text-gray-800 mb-3 text-center">Image Preview (Resized for Processing)</h2>
-            <canvas id="imageCanvas" class="w-full rounded-md shadow-md"></canvas>
-            <p class="text-sm text-gray-500 text-center mt-2">
-                Your image will be processed at a maximum width/height of 200 pixels for performance.
-            </p>
-        </div>
+      <div id="messageBox" class="w-full max-w-md message-box hidden"></div>
 
-        <button id="convertBtn" class="btn-primary" disabled>Convert to SVG</button>
+      <div
+        id="downloadArea"
+        class="hidden w-full max-w-xl flex flex-col items-center space-y-4"
+      >
+        <h2 class="text-xl font-semibold text-gray-800 text-center mt-4">
+          Download your SVG:
+        </h2>
+        <a
+          id="downloadLink"
+          href="#"
+          download="converted_image.svg"
+          class="btn-primary block text-center no-underline"
+          >Download SVG</a
+        >
+        <p class="text-sm text-gray-500">
+          Right-click and "Save link as..." if automatic download doesn't work.
+        </p>
+      </div>
 
-        <div id="messageBox" class="w-full max-w-md message-box hidden"></div>
-
-        <div id="downloadArea" class="hidden w-full max-w-xl flex flex-col items-center space-y-4">
-            <h2 class="text-xl font-semibold text-gray-800 text-center mt-4">Download your SVG:</h2>
-            <a id="downloadLink" href="#" download="converted_image.svg" class="btn-primary block text-center no-underline">Download SVG</a>
-            <p class="text-sm text-gray-500">Right-click and "Save link as..." if automatic download doesn't work.</p>
-        </div>
-
-        <div id="svgCodePreviewArea" class="hidden w-full max-w-xl">
-            <h2 class="text-xl font-semibold text-gray-800 text-center mt-4">Generated SVG Code:</h2>
-            <pre class="svg-preview w-full text-sm font-mono text-gray-700 whitespace-pre-wrap"><code id="svgCode"></code></pre>
-        </div>
+      <div id="svgCodePreviewArea" class="hidden w-full max-w-xl">
+        <h2 class="text-xl font-semibold text-gray-800 text-center mt-4">
+          Generated SVG Code:
+        </h2>
+        <pre
+          class="svg-preview w-full text-sm font-mono text-gray-700 whitespace-pre-wrap"
+        ><code id="svgCode"></code></pre>
+      </div>
     </div>
 
     <script src="scripts/svg_converter.js"></script>
-</body>
+  </body>
 </html>
 ```

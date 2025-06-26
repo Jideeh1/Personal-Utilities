@@ -1,0 +1,29 @@
+{
+  "name": "personal-utilities",
+  "version": "1.0.0",
+  "description": "- **Version**: 2025.6.26\r - **Status**: In Development\r - **Developers**: [Jideeh1](https://github.com/Jideeh1)",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev" : "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jideeh1/Personal-Utilities.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Jideeh1/Personal-Utilities/issues"
+  },
+  "homepage": "https://github.com/Jideeh1/Personal-Utilities#readme",
+  "dependencies": {
+    "dotenv": "^16.5.0",
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "node-fetch": "^2.7.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
+}
