@@ -1,0 +1,74 @@
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6; 
+        }
+        .container {
+            max-width: 90%; 
+            margin: 2rem auto;
+            padding: 1.5rem;
+            background-color: #ffffff;
+            border-radius: 1rem; 
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e5e7eb; 
+        }
+        input[type="file"] {
+            border: 2px dashed #9ca3af; 
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+        }
+        input[type="file"]:hover {
+            border-color: #6b7280;
+            background-color: #f9fafb;
+        }
+       
+        .btn-primary {
+            background-image: linear-gradient(to right, #6366f1, #8b5cf6);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.75rem;
+            font-weight: 600;
+            transition: all 0.2s ease-in-out;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .btn-primary:hover {
+            background-image: linear-gradient(to right, #4f46e5, #7c3aed);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+            transform: translateY(-2px); 
+        }
+        .btn-primary:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            background-image: none;
+            background-color: #a78bfa;
+            box-shadow: none;
+            transform: none;
+        }
+        .message-box {
+            background-color: #eff6ff; 
+            color: #1e40af;
+            padding: 1rem;
+            border-radius: 0.75rem;
+            border: 1px solid #bfdbfe;
+        }
+        .error-message {
+            background-color: #fee2e2; 
+            color: #991b1b; 
+            border: 1px solid #fecaca; 
+        }
+        canvas {
+            border-radius: 0.75rem;
+            border: 1px solid #d1d5db; 
+            background-color: #f9fafb;
+        }
+    
+        .svg-preview {
+            border: 1px solid #d1d5db;
+            border-radius: 0.75rem;
+            padding: 1rem;
+            background-color: #f9fafb;
+            overflow: auto; 
+            max-height: 400px; 
+        }
