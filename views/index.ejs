@@ -25,7 +25,9 @@
       <% if(typeof success != "undefined" && success) { %>
       <div class="success">
         <p><%= song_title %></p>
-        <a href="<&= song_link&>"><button id="download-bt">DOWNLOAD</button></a>
+        <a href="<%= song_link %>"
+          ><button id="download-bt">DOWNLOAD</button></a
+        >
       </div>
       <% } else if (typeof success != "undefined" && !success) { %>
       <div class="error">
